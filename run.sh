@@ -12,6 +12,26 @@ else
 	echo "git check ok"
 fi
 
+CHECK_CURL=`which curl`
+if [ -z "CHECK_CURL" ]
+then
+	echo "curl does not exist."
+	echo "exitting..."
+	exit 0
+else
+	echo "curl check ok"
+fi
+
+CHECK_VIM=`which vim`
+if [ -z "CHECK_VIM" ]
+then
+	echo "vim does not exist."
+	echo "exitting..."
+	exit 0
+else
+	echo "vim check ok"
+fi
+
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
