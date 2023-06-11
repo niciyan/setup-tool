@@ -31,16 +31,16 @@ sudo chmod -R 775 /var/www/html/laravelapp/storage
 cd laravelapp
 php artisan
 
-sudo cat << "EOT" > /etc/apache2/sites-available/laravel.conf
+sudo tee /etc/apache2/sites-available/laravel.conf << "EOT"
 <VirtualHost *:80>
-ServerName example.com
-ServerAdmin admin@example.com
-DocumentRoot /var/www/html/laravelapp/public
-<Directory /var/www/html/laravelapp>
-AllowOverride All
-</Directory>
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
+  ServerName example.com
+  ServerAdmin admin@example.com
+  DocumentRoot /var/www/html/laravelapp/public
+  <Directory /var/www/html/laravelapp>
+    AllowOverride All
+  </Directory>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOT
 
