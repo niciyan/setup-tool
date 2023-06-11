@@ -1,0 +1,26 @@
+Ubuntuのunattended-upgradeの問題について
+
+unattended-upgradeは、自動的にソフトウェアのマイナーアップデートを実施するもので、
+これが実行中の間、他のaptコマンドの操作(インストール、アンインストールなど)が実施できない問題がある。
+aptコマンドが実施できないとサーバー操作に大きな支障が出るため、以下のコマンドで削除しておくほうがよい。
+sudo apt remove unattend-upgrade
+
+万が一unattend-upgradeが動いているときは、以下のログを見て状況を確認できる。
+$ tail -f /var/log/unattended-upgrades/unattended-upgrades.log
+2023-06-11 20:33:02,995 INFO Initial whitelist (not strict): 
+2023-06-11 20:41:47,997 WARNING Could not figure out development release: Distribution data outdated. Please check for an update for distro-info-data. See /usr/share/doc/distro-info-data/README.Debian for details.
+2023-06-11 20:41:47,997 INFO 自動アップグレードスクリプトを開始します
+2023-06-11 20:41:47,997 INFO 許可されているパッケージ導入元: o=Ubuntu,a=focal, o=Ubuntu,a=focal-security, o=UbuntuESMApps,a=focal-apps-security, o=UbuntuESM,a=focal-infra-security
+・・・
+
+また、aptのログを見て、unattend-upgradeによってインストールされたログを確認できる
+$ tail -f /var/log/apt/history.log
+End-Date: 2023-06-11  20:55:12
+
+Start-Date: 2023-06-11  20:55:26
+Commandline: /usr/bin/unattended-upgrade
+Upgrade: binutils:amd64 (2.34-6ubuntu1.3, 2.34-6ubuntu1.5), binutils-x86-64-linux-gnu:amd64 (2.34-6ubuntu1.3, 2.34-6ubuntu1.5), binutils-common:amd64 (2.34-6ubuntu1.3, 2.34-6ubuntu1.5), libbinutils:amd64 (2.34-6ubuntu1.3, 2.34-6ubuntu1.5), libctf0:amd64 (2.34-6ubuntu1.3, 2.34-6ubuntu1.5)
+End-Date: 2023-06-11  20:55:35
+・・・
+
+
