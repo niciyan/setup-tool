@@ -2,16 +2,17 @@
 set -ex
 
 # https://linuxopsys.com/topics/install-laravel-on-ubuntu-20-04
+COMPOSER_ALLOW_SUPERUSER=1
 
-sudo apt install apache2
+sudo apt install -y apache2
 sudo systemctl start apache2
 sudo systemctl enable apache2
 sudo systemctl status apache2
 
-sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
+sudo apt install -y php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
 php -v
 
-sudo apt install mariadb-server
+sudo apt install -y mariadb-server
 sudo mysql -u root << EOF
 CREATE DATABASE laravel_db;
 CREATE USER 'laravel_user'@'localhost' IDENTIFIED BY 'secretpassword';
