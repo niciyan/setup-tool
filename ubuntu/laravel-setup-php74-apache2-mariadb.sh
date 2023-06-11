@@ -7,7 +7,7 @@ COMPOSER_ALLOW_SUPERUSER=1
 sudo apt install -y apache2
 sudo systemctl start apache2
 sudo systemctl enable apache2
-sudo systemctl status apache2
+sudo systemctl status apache2 --no-pager
 
 sudo apt install -y php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
 php -v
@@ -26,7 +26,7 @@ sudo chmod +x /usr/local/bin/composer
 composer --version
 
 cd /var/www/html
-sudo composer create-project laravel/laravel laravelapp
+sudo composer create-project laravel/laravel laravelapp --no-interaction
 sudo chown -R www-data:www-data /var/www/html/laravelapp
 sudo chmod -R 775 /var/www/html/laravelapp/storage
 cd laravelapp
