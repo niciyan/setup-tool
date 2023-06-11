@@ -17,7 +17,6 @@ CREATE DATABASE laravel_db;
 CREATE USER 'laravel_user'@'localhost' IDENTIFIED BY 'secretpassword';
 GRANT ALL ON laravel_db.* TO 'laravel_user'@'localhost';
 FLUSH PRIVILEGES;
-QUIT;
 EOF
 
 curl -sS https://getcomposer.org/installer | php
