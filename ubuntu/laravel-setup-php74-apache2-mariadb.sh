@@ -31,7 +31,7 @@ sudo chmod -R 775 /var/www/html/laravelapp/storage
 cd laravelapp
 php artisan
 
-cat << "EOT" > /etc/apache2/sites-available/laravel.conf
+sudo cat << "EOT" > /etc/apache2/sites-available/laravel.conf
 <VirtualHost *:80>
 ServerName example.com
 ServerAdmin admin@example.com
